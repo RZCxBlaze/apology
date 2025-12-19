@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="I'm Truly Sorry – a heartfelt apology from my heart to yours." />
+  <meta name="keywords" content="sorry, apology, love, trust, forgiveness" />
+  <title>I'm Truly Sorry – From Me</title>
+
+  <style>
+    :root{
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --bg3:#24243e;
+      --accent:#ff6fae;
+      --soft:#ffd6e8;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
+    body{
+      background:linear-gradient(180deg,var(--bg1),var(--bg2),var(--bg3));
+      color:white;
+      overflow-x:hidden;
+    }
+
+    section{
+      min-height:100vh;
+      padding:60px 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    h1,h2{font-weight:600;}
+    p{max-width:700px;line-height:1.8;font-size:1.05rem;}
+
+    /* Stars */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background-image:radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+                       radial-gradient(1px 1px at 80% 40%,#fff,transparent),
+                       radial-gradient(2px 2px at 50% 80%,#fff,transparent);
+      opacity:.25;
+      animation:twinkle 4s infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes twinkle{from{opacity:.15}to{opacity:.35}}
+
+    /* HEARTBEAT */
+    .heartbeat{
+      animation:beat 1.6s infinite;
+    }
+    @keyframes beat{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+    }
+
+    /* RAINING HEARTS */
+    .heart{
+      position:fixed;top:-20px;
+      color:rgba(255,182,193,.8);
+      animation:fall linear infinite;
+      pointer-events:none;
+    }
+    @keyframes fall{to{transform:translateY(110vh)}}
+
+    /* BUTTON */
+    button{
+      background:linear-gradient(135deg,#ff6fae,#ff9fd0);
+      border:none;border-radius:30px;
+      padding:14px 28px;
+      color:#fff;font-size:1rem;
+      margin-top:25px;cursor:pointer;
+      box-shadow:0 10px 25px rgba(255,111,174,.5);
+    }
+
+    /* TIMELINE */
+    .timeline{max-width:800px;text-align:left}
+    .item{background:rgba(255,255,255,.08);margin:12px 0;padding:18px;border-radius:16px;cursor:pointer}
+    .item span{display:none;font-size:.95rem;color:var(--soft)}
+    .item.active span{display:block;margin-top:10px}
+
+    /* SLIDER */
+    .slider{display:flex;overflow-x:auto;gap:20px;scroll-snap-type:x mandatory}
+    .slide{min-width:260px;background:rgba(255,255,255,.1);padding:20px;border-radius:18px;scroll-snap-align:center}
+
+    /* POEM */
+    .poem{font-style:italic;animation:reveal 2s ease}
+    @keyframes reveal{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
+
+    /* HUG EFFECT */
+    .hugged{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;justify-content:center;align-items:center;z-index:99}
+
+    footer{padding:40px;text-align:center;font-size:.9rem;opacity:.8}
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="heartbeat">
+  <h1>Poorvi ❤️</h1>
+  <p>
+    Pooba, I'm so deeply sorry.<br>
+    Ik I’ve hurt you with all these trust issues that I have.<br><br>
+    <b>I was wrong.</b> I promise you by my heart, once and for all, that aaj se I will always trust you.
+  </p>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <h2>Where I Failed You</h2>
+  <div class="timeline">
+    <div class="item">That day I asked for proofs<span>I should have trusted your words, not demanded evidence. I'm sorry.</span></div>
+    <div class="item">When I overthought silence<span>Your silence wasn’t guilt, it was exhaustion. I see that now.</span></div>
+    <div class="item">Repeating the same doubts<span>It drained you. I promise to always have faith on you.</span></div>
+    <div class="item">What I’ll do now<span>No interrogations. No mistrust. Only belief.</span></div>
+  </div>
+</section>
+
+<!-- POEM -->
+<section>
+  <h2>From My Heart</h2>
+  <p class="poem">
+    Maaf kar do na…<br>
+    Main seekh raha hoon in situations ko handle karna.<br>
+    Tumhe khona meri sabse badi galti hogi —<br>
+    aur main us galti se guzarna nahi chahta.<br><br>
+    Trust is my promise. Respect is my vow.
+    Decision is yours, thank you for hearing me.
+  </p>
+</section>
+
+<!-- HUG -->
+<section>
+  <h2>One Digital Hug?</h2>
+  <button onclick="hug()">🤍 Send Hug</button>
+</section>
+
+<footer>
+  Made with honesty.<br>
+  
+  
+</footer>
+
+<script>
+/* Hearts */
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className='heart';
+  h.textContent='💗';
+  h.style.left=Math.random()*100+'vw';
+  h.style.animationDuration=3+Math.random()*4+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},400);
+
+/* Timeline */
+document.querySelectorAll('.item').forEach(i=>i.onclick=()=>i.classList.toggle('active'));
+
+/* Hug */
+function hug(){
+  const d=document.createElement('div');
+  d.className='hugged';
+  d.innerHTML='<h2>One hug to heal it all? 💕</h2>';
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),2500);
+}
+</script>
+</body>
+</html>
