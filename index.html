@@ -139,6 +139,11 @@
   <button onclick="hug()">🤍 Send Hug</button>
 </section>
 
+<!-- MUSIC TOGGLE -->
+<section aria-label="Background music">
+  <button id="musicBtn" aria-pressed="false">🎵 Music loading…</button>
+</section>
+
 <footer>
   Made with honesty.<br>
   
@@ -168,6 +173,47 @@ function hug(){
   document.body.appendChild(d);
   setTimeout(()=>d.remove(),2500);
 }
+</script>
+<audio id="bgMusic" preload="auto" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+// Background music (AUTO-START ON FIRST INTERACTION)
+(function(){
+  const btn = document.getElementById('musicBtn');
+  const audio = document.getElementById('bgMusic');
+  if(!btn || !audio) return;
+
+  let started = false;
+
+  function startMusic(){
+    if(started) return;
+    started = true;
+    audio.volume = 0;
+    audio.play().then(()=>{
+      btn.textContent = '⏸ Pause music';
+      btn.setAttribute('aria-pressed','true');
+      let v = 0;
+      const fade = setInterval(()=>{
+        v += 0.02;
+        audio.volume = Math.min(v,0.6);
+        if(v>=0.6) clearInterval(fade);
+      },120);
+    }).catch(()=>{});
+  }
+
+  // Start on ANY user interaction (required by browsers)
+  ['click','touchstart','keydown','scroll'].forEach(evt=>{
+    document.addEventListener(evt,startMusic,{once:true});
+  });
+
+  // Manual toggle
+  btn.addEventListener('click',()=>{
+    if(audio.paused){ audio.play(); btn.textContent='⏸ Pause music'; }
+    else{ audio.pause(); btn.textContent='🎵 Play music'; }
+  });
+})();
 </script>
 </body>
 </html>
